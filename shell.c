@@ -40,6 +40,13 @@ int main()
         else if (hasPrefix(command, "pwd") == 0)
         {
             printf("PWD WERE HERE");
+            char cwd[1024];
+            getcwd(cwd, sizeof(cwd));
+            printf(cwd);
+        }
+        else if (hasPrefix(command, "exit") == 0)
+        {
+            break;
         }
     }
     return 0;
