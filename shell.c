@@ -39,6 +39,7 @@ int main()
         }
         else if (hasPrefix(command, "pwd") == 0)
         {
+            printf("PWD WERE HERE");
         }
     }
     return 0;
