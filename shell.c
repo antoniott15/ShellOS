@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <dirent.h>
-//#include <error.h>
+
 
 int hasPrefix(char const *, char const *);
 int cd(char *pth);
@@ -14,7 +14,7 @@ int cd(char *pth);
 int main(){
 
     char buffer[BUFFERSIZE];
-    char *prompt = "OS";
+    char *prompt = "OSAntonio$ ";
     char *a = ">";
 
     char *tok;
@@ -26,7 +26,7 @@ int main(){
         printf("%s%s",prompt,a);
         fgets(buffer, BUFFERSIZE, stdin);
         if(hasPrefix(buffer,"cd") == 0){
-            tok = strchr(buffer,' '); //use something more powerful
+            tok = strchr(buffer,' '); 
             if(tok) {
                 char *tempTok = tok + 1;
                 tok = tempTok;
@@ -37,7 +37,7 @@ int main(){
                 cd(tok);
             }
         }else{
-            system("ls"); //for testing the CWD/PWD
+            system("ls"); 
         }
     }
     return 0;
@@ -60,12 +60,12 @@ int cd(char *pth){
 
     char cwd[BUFFERSIZE];
     if(pth[0] != '/')
-    {// true for the dir in cwd
+    {
         getcwd(cwd,sizeof(cwd));
         strcat(cwd,"/");
         strcat(cwd,path);
         chdir(cwd);
-    }else{//true for dir w.r.t. /
+    }else{
         chdir(pth);
     }
 
