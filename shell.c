@@ -39,7 +39,7 @@ int main()
         }
         else if (hasPrefix(command, "pwd") == 0)
         {
-                }
+        }
     }
     return 0;
 }
