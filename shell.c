@@ -54,8 +54,8 @@ int main()
                 int i = 1;
                 while (ti = readdir(dir))
                 {
-                    printf("%s \t \t", ti->d_name);
-                    if ((i % 3) == 0)
+                    printf("%s ", ti->d_name);
+                    if ((i % 2) == 0)
                     {
                         printf("\n");
                     }
