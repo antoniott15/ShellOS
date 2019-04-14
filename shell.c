@@ -2,9 +2,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <dirent.h>
 #define size 200
 
-int hasPrefix(char const *, char const *);
+int hasArguments(char const *, char const *);
 int cd(char *pth);
 int main()
 {
@@ -18,7 +23,7 @@ int main()
         bzero(command, size);
         printf("OSAntonio$ ");
         fgets(command, size, stdin);
-        if (hasPrefix(command, "cd") == 0)
+        if (hasArguments(command, "cd") == 0)
         {
             tok = strchr(command, ' ');
             if (tok)
@@ -33,18 +38,22 @@ int main()
                 cd(tok);
             }
         }
-        else if (hasPrefix(command, "ls") == 0)
+        else if (hasArguments(command, "pwd") == 0)
         {
-            system("ls");
-        }
-        else if (hasPrefix(command, "pwd") == 0)
-        {
-            printf("PWD WERE HERE");
             char cwd[1024];
             getcwd(cwd, sizeof(cwd));
             printf(cwd);
         }
-        else if (hasPrefix(command, "exit") == 0)
+
+        else if (hasArguments(command, "ls") == 0)
+        {
+            {
+                DIR *dir;
+                struct dirent *ti;
+                dir = opendir(".");
+            }
+        }
+        else if (hasArguments(command, "exit") == 0)
         {
             break;
         }
@@ -52,7 +61,7 @@ int main()
     return 0;
 }
 
-int hasPrefix(char const *p, char const *q)
+int hasArguments(char const *p, char const *q)
 {
     int i = 0;
     for (i = 0; q[i]; i++)
