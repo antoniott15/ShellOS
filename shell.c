@@ -87,6 +87,7 @@ int main()
         {
             ForNanoAndCat(command, 4, "/bin/cat");
         }
+
         else if (hasArguments(command, "exit") == 0)
         {
             break;
@@ -123,7 +124,6 @@ void cd(char *pth)
     {
         chdir(pth);
     }
-
 }
 
 void ForNanoAndCat(char *command, int number, char exec[12])
