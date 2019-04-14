@@ -75,12 +75,12 @@ int main()
             unlink(arg);
         }
 
-        if (command[0] == 'n' && command[1] == 'a' && command[2] == 'n' && command[3] == 'o')
+        else if (command[0] == 'n' && command[1] == 'a' && command[2] == 'n' && command[3] == 'o')
         {
             ForNanoAndCat(command, 5, "/bin/nano");
         }
 
-        if (command[0] == 'c' && command[1] == 'a' && command[2] == 't')
+        else if (command[0] == 'c' && command[1] == 'a' && command[2] == 't')
         {
             ForNanoAndCat(command, 4, "/bin/cat");
         }
@@ -134,12 +134,5 @@ void ForNanoAndCat(char *command, int number, char exec[12])
     }
     char *arg1[3] = {exec, arg, NULL};
 
-    if (fork() == 0)
-    {
-        execvp(exec, arg1);
-    }
-    else
-    {
-        wait(NULL);
-    }
+    fork() == 0 ? execvp(exec, arg1) : wait(NULL);
 }
