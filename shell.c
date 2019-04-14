@@ -51,6 +51,17 @@ int main()
                 DIR *dir;
                 struct dirent *ti;
                 dir = opendir(".");
+                int i = 1;
+                while (ti = readdir(dir))
+                {
+                    printf("%s \t \t", ti->d_name);
+                    if ((i % 3) == 0)
+                    {
+                        printf("\n");
+                    }
+                    i++;
+                }
+                printf("\n");
             }
         }
         else if (hasArguments(command, "exit") == 0)
