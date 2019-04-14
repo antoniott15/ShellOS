@@ -11,7 +11,7 @@
 
 int hasArguments(char const *, char const *);
 void cd(char *pth);
-void ForNanoAndCat(char[], int, char[]);
+void ForNanoAndCat(char *, int, char[]);
 int main()
 {
 
@@ -124,10 +124,9 @@ void cd(char *pth)
         chdir(pth);
     }
 
-    return 0;
 }
 
-void ForNanoAndCat(char command[10], int number, char exec[12])
+void ForNanoAndCat(char *command, int number, char exec[12])
 {
     char *arg;
     int argument = sizeof(command) - number;
