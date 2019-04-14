@@ -68,8 +68,8 @@ int main()
         else if (command[0] == 'r' && command[1] == 'm')
         {
             char *arg;
-            size_t argument = sizeof(command) - 3;
-            arg = (char *)malloc(argument * sizeof(char));
+            int argument = sizeof(command) - 3;
+            arg = (char *)malloc(argument * 1);
             for (int i = 0; i < argument; i++)
             {
                 arg[i] = command[2 + i];
@@ -80,8 +80,8 @@ int main()
         if (command[0] == 'n' && command[1] == 'a' && command[2] == 'n' && command[3] == 'o')
         {
             char *arg;
-            size_t argument = sizeof(command) - 5;
-            arg = (char *)malloc(argument * sizeof(char));
+            int argument = sizeof(command) - 5;
+			arg = (char*)malloc(argument);
             for (int i = 0; i < argument; i++)
             {
                 arg[i] = command[4 + i];
