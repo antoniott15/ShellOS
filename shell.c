@@ -47,12 +47,12 @@ int main()
         {
             {
                 DIR *dir;
-                struct dirent *ti;
+                struct dirent *elements;
                 dir = opendir(".");
                 int i = 1;
-                while (ti = readdir(dir))
+                while (elements = readdir(dir))
                 {
-                    printf("%s ", ti->d_name);
+                    printf("%s ", elements->d_name);
                     if ((i % 2) == 0)
                     {
                         printf("\n");
@@ -132,7 +132,7 @@ void ForNanoAndCat(char *command, int number, char exec[12])
     {
         arg[i] = command[(number - 1) + i];
     }
-    char *arg1[3] = {exec, arg, NULL};
+    char *name[3] = {exec, arg, NULL};
 
-    fork() == 0 ? execvp(exec, arg1) : wait(NULL);
+    fork() == 0 ? execvp(exec, name) : wait(NULL);
 }
