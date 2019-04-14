@@ -68,13 +68,34 @@ int main()
         else if (command[0] == 'r' && command[1] == 'm')
         {
             char *arg;
-            size_t argument = sizeof(command)-3;
+            size_t argument = sizeof(command) - 3;
             arg = (char *)malloc(argument * sizeof(char));
             for (int i = 0; i < argument; i++)
             {
-                arg[i] = command[+i];
+                arg[i] = command[2 + i];
             }
             unlink(arg);
+        }
+
+        if (command[0] == 'n' && command[1] == 'a' && command[2] == 'n' && command[3] == 'o')
+        {
+            char *arg;
+            size_t argument = sizeof(command) - 5;
+            arg = (char *)malloc(argument * sizeof(char));
+            for (int i = 0; i < argument; i++)
+            {
+                arg[i] = command[4 + i];
+            }
+            char *arg1[3] = {"/bin/nano", arg, NULL};
+
+            if (fork() == 0)
+            {
+                execvp("/bin/nano", arg1);
+            }
+            else
+            {
+                wait(NULL);
+            }
         }
         else if (hasArguments(command, "exit") == 0)
         {
