@@ -10,7 +10,8 @@
 #define size 200
 
 int hasArguments(char const *, char const *);
-int cd(char *pth);
+void cd(char *pth);
+void ForNanoAndCat(char[], int, char[]);
 int main()
 {
 
@@ -79,23 +80,12 @@ int main()
 
         if (command[0] == 'n' && command[1] == 'a' && command[2] == 'n' && command[3] == 'o')
         {
-            char *arg;
-            int argument = sizeof(command) - 5;
-			arg = (char*)malloc(argument);
-            for (int i = 0; i < argument; i++)
-            {
-                arg[i] = command[4 + i];
-            }
-            char *arg1[3] = {"/bin/nano", arg, NULL};
+            ForNanoAndCat(command, 5, "/bin/nano");
+        }
 
-            if (fork() == 0)
-            {
-                execvp("/bin/nano", arg1);
-            }
-            else
-            {
-                wait(NULL);
-            }
+        if (command[0] == 'c' && command[1] == 'a' && command[2] == 't')
+        {
+            ForNanoAndCat(command, 4, "/bin/cat");
         }
         else if (hasArguments(command, "exit") == 0)
         {
@@ -116,7 +106,7 @@ int hasArguments(char const *p, char const *q)
     return 0;
 }
 
-int cd(char *pth)
+void cd(char *pth)
 {
     char path[size];
     strcpy(path, pth);
@@ -135,4 +125,25 @@ int cd(char *pth)
     }
 
     return 0;
+}
+
+void ForNanoAndCat(char command[10], int number, char exec[12])
+{
+    char *arg;
+    int argument = sizeof(command) - number;
+    arg = (char *)malloc(argument * sizeof(char));
+    for (int i = 0; i < argument; i++)
+    {
+        arg[i] = command[(number - 1) + i];
+    }
+    char *arg1[3] = {exec, arg, NULL};
+
+    if (fork() == 0)
+    {
+        execvp(exec, arg1);
+    }
+    else
+    {
+        wait(NULL);
+    }
 }
